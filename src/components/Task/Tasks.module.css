@@ -1,0 +1,50 @@
+.container {
+  max-width: 100%;
+}
+
+.container + .container{
+  margin-top: 0.75rem;
+}
+
+.content {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  border-radius: 8px;
+  gap: 0.75rem;
+  background: var(--gray-500);
+  padding: 1rem;
+  border: solid 1px var(--gray-400);
+  font-size: 0.875rem;
+  color: var(--gray-100);
+  line-height: 140%;
+}
+
+.uncheckCircle {
+  background: transparent;
+  border: 0;
+  line-height: 0;
+  outline: 0;
+  border-radius: 2px;
+  color: var(--blue);
+  transition: color 0.2s ease
+}
+
+.uncheckCircle:hover {
+  color: var(--blue-dark);
+}
+
+.deleteButton {
+  background: transparent;
+  border: 0;
+  line-height: 0;
+  color: var(--gray-300);
+  border-radius: 4px;
+  padding: 0.313rem;
+  transition: all 0.2s ease
+}
+
+.deleteButton:hover {
+  background: var(--gray-400);
+  color: var(--red);
+}
