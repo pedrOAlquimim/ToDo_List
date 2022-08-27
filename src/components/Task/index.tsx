@@ -1,4 +1,5 @@
 import { Trash, Circle } from "phosphor-react";
+import clipboardImage from '../../assets/Clipboard.svg'
 import styles from './Tasks.module.css';
 
 interface TaskProps {

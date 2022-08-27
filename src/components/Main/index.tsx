@@ -1,11 +1,14 @@
 import { ChangeEvent, FormEvent, useState } from 'react';
-import { PlusCircle } from 'phosphor-react';
 import { Tasks } from '../Task';
+import { PlusCircle } from 'phosphor-react';
+import clipboardImage from '../../assets/Clipboard.svg'
 import styles from './Main.module.css';
 
 export function Main() {
   const [tasks, setTasks] = useState([] as string[]);
   const [newCommentChange, setNewCommentChange] = useState('');
+
+  const styleWithoutAnyTasks = tasks.length === 0;
 
   function handleCreateNewTask(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -54,15 +57,27 @@ export function Main() {
           </div>
         </header>
 
-        {tasks.map(content => {
-          return (
-            <Tasks
-              key={content}
-              content={content}
-              onDeleteTask={deleteTask}
-            />
-          )
-        })}
+        {
+          styleWithoutAnyTasks
+        ?
+          <div className={styles.withoutTasksContainer}>
+            <img src={clipboardImage}/>
+            <div>
+              <p>You don't have any tasks registered yet</p>
+              <p>Create tasks and organize your to-do items</p>
+            </div>
+          </div>
+        :   
+          tasks.map(content => {
+            return (
+              <Tasks
+                key={content}
+                content={content}
+                onDeleteTask={deleteTask}
+              />
+            )
+          })
+        }
       </div>
     </div>
   )

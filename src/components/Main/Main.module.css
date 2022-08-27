@@ -68,3 +68,18 @@
   font-size: 0.875rem;
   font-weight: bold;
 }
+
+/* Without tasks */
+.withoutTasksContainer {
+  text-align: center;
+  border-top: 1px solid var(--gray-400);
+  padding-top: 4rem;
+}
+
+.withoutTasksContainer div {
+  padding-top: 1rem;
+  line-height: 140%;
+}
+.withoutTasksContainer div p:nth-child(1) {
+  font-weight: bold;
+}
