@@ -20,6 +20,22 @@
   line-height: 140%;
 }
 
+.contentCheckedTrue {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  border-radius: 8px;
+  gap: 0.75rem;
+  background: var(--gray-500);
+  padding: 1rem;
+  font-size: 0.875rem;
+  color: var(--gray-300);
+  line-height: 140%;
+
+  border: solid 1px var(--gray-500);
+  text-decoration: line-through;
+}
+
 .uncheckCircle {
   background: transparent;
   border: 0;
@@ -32,6 +48,20 @@
 
 .uncheckCircle:hover {
   color: var(--blue-dark);
+}
+
+.checkCircle {
+  background: transparent;
+  outline: 0;
+  border: 0;
+  line-height: 0;
+  border-radius: 2px;
+  color: var(--purple-dark);
+  transition: color 0.2s ease
+}
+
+.checkCircle:hover {
+  color: var(--purple);
 }
 
 .deleteButton {

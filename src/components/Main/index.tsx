@@ -1,18 +1,23 @@
-import { ChangeEvent, FormEvent, useState } from 'react';
+import { ChangeEvent, FormEvent, useState, useEffect } from 'react';
 import { Tasks } from '../Task';
 import { PlusCircle } from 'phosphor-react';
+import TaskBox from '../../domain/task';
 import clipboardImage from '../../assets/Clipboard.svg'
+
 import styles from './Main.module.css';
 
 export function Main() {
-  const [tasks, setTasks] = useState([] as string[]);
+  const [tasks, setTasks] = useState([] as TaskBox[]);
   const [newCommentChange, setNewCommentChange] = useState('');
 
   const styleWithoutAnyTasks = tasks.length === 0;
 
+  const taskId = (tasks[- 1]?.id || 0) + 1;
+  const newTask = { id: taskId, description: newCommentChange, checked: false };
+
   function handleCreateNewTask(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    setTasks([...tasks, newCommentChange]);
+    setTasks([...tasks, newTask]);
     setNewCommentChange('');
   }
 
@@ -20,9 +25,9 @@ export function Main() {
     setNewCommentChange(event.target.value);
   }
 
-  function deleteTask(taskToDelete: string) {
+  function deleteTask(taskToDelete: number) {
     const tasksWithoutDeletedOne = tasks.filter(content => {
-      return content !== taskToDelete;
+      return content.id !== taskToDelete;
     })
     setTasks(tasksWithoutDeletedOne);
   }
@@ -48,12 +53,12 @@ export function Main() {
         <header className={styles.tasksHeader}>
           <div className={styles.createdTasksTitle}>
             <p>Created tasks</p>
-            <span>5</span>
+            <span>{tasks.length}</span>
           </div>
 
           <div className={styles.doneTasksTitle}>
             <p>Done</p>
-            <span>2 de 5</span>
+            <span>2 de {tasks.length}</span>
           </div>
         </header>
 
@@ -71,7 +76,7 @@ export function Main() {
           tasks.map(content => {
             return (
               <Tasks
-                key={content}
+                key={content.id}
                 content={content}
                 onDeleteTask={deleteTask}
               />
