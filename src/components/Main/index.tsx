@@ -9,13 +9,14 @@ import styles from './Main.module.css';
 export function Main() {
   const [tasks, setTasks] = useState([] as TaskBox[]);
   const [newCommentChange, setNewCommentChange] = useState('');
+  const [tasksDone, setTasksDone] = useState([] as TaskBox[]);
 
   const styleWithoutAnyTasks = tasks.length === 0;
 
   const taskId = tasks.length ? tasks[tasks.length - 1].id + 1 : 0;
-  console.log(tasks);
   const newTask = { id: taskId, description: newCommentChange, checked: false };
-  
+
+
   function handleCreateNewTask(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
     setTasks([...tasks, newTask]);
@@ -31,9 +32,22 @@ export function Main() {
       return content.id !== taskToDelete;
     })
     setTasks(tasksWithoutDeletedOne);
-    console.log(tasksWithoutDeletedOne)
   }
 
+  function handleTaskChecked(taskId: number) {
+    const tasksCheckedorNot = tasks.map(content => {
+      if (taskId === content.id) {
+        content.checked = !content.checked
+      }
+      return content;
+    })
+    setTasks(tasksCheckedorNot);
+    setTasksDone(tasks.filter((content => {
+      return content.checked
+    })
+    ));
+  }
+  
 
   return (
     <div>
@@ -60,7 +74,7 @@ export function Main() {
 
           <div className={styles.doneTasksTitle}>
             <p>Done</p>
-            <span>{tasks.length} de {tasks.length}</span>
+            <span>{tasksDone.length} de {tasks.length}</span>
           </div>
         </header>
 
@@ -81,6 +95,7 @@ export function Main() {
                 key={content.id}
                 content={content}
                 onDeleteTask={deleteTask}
+                onTaskChecked={handleTaskChecked}
               />
             )
           })

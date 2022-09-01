@@ -7,24 +7,26 @@ import styles from './Tasks.module.css';
 interface TaskProps {
   content: TaskBox;
   onDeleteTask: (taskToDelete: number) => void;
+  onTaskChecked: (taskId: number) => void;
 }
 
-export function Tasks({ content, onDeleteTask }: TaskProps) {
+export function Tasks({ content, onDeleteTask, onTaskChecked }: TaskProps) {
   const [isTaskChecked, setIsTaskChecked] = useState(false);
 
   function handleDeleteTask() {
     onDeleteTask(content.id);
   }
 
-  function handleTaskChecked() {
-    setIsTaskChecked(content.checked = !content.checked);
+  function taskChecked() {
+    onTaskChecked(content.id);
+    setIsTaskChecked(content.checked);
   }
 
 
   return (
     <div className={styles.container}>
       <div className={isTaskChecked ? styles.contentCheckedTrue : styles.content}>
-        <button onClick={handleTaskChecked} className={isTaskChecked ? styles.checkCircle : styles.uncheckCircle}>
+        <button onClick={taskChecked} className={isTaskChecked ? styles.checkCircle : styles.uncheckCircle}>
           {
             isTaskChecked
             ?
