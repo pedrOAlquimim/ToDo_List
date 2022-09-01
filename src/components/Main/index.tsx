@@ -12,9 +12,10 @@ export function Main() {
 
   const styleWithoutAnyTasks = tasks.length === 0;
 
-  const taskId = (tasks[- 1]?.id || 0) + 1;
+  const taskId = tasks.length ? tasks[tasks.length - 1].id + 1 : 0;
+  console.log(tasks);
   const newTask = { id: taskId, description: newCommentChange, checked: false };
-
+  
   function handleCreateNewTask(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
     setTasks([...tasks, newTask]);
@@ -30,6 +31,7 @@ export function Main() {
       return content.id !== taskToDelete;
     })
     setTasks(tasksWithoutDeletedOne);
+    console.log(tasksWithoutDeletedOne)
   }
 
 
@@ -58,7 +60,7 @@ export function Main() {
 
           <div className={styles.doneTasksTitle}>
             <p>Done</p>
-            <span>2 de {tasks.length}</span>
+            <span>{tasks.length} de {tasks.length}</span>
           </div>
         </header>
 

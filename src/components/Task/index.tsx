@@ -9,7 +9,7 @@ interface TaskProps {
   onDeleteTask: (taskToDelete: number) => void;
 }
 
-export function Tasks({ content, onDeleteTask}: TaskProps) {
+export function Tasks({ content, onDeleteTask }: TaskProps) {
   const [isTaskChecked, setIsTaskChecked] = useState(false);
 
   function handleDeleteTask() {
@@ -18,7 +18,6 @@ export function Tasks({ content, onDeleteTask}: TaskProps) {
 
   function handleTaskChecked() {
     setIsTaskChecked(content.checked = !content.checked);
-    console.log(isTaskChecked);
   }
 
 
