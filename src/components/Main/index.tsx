@@ -1,4 +1,4 @@
-import { ChangeEvent, FormEvent, useState, useEffect } from 'react';
+import { ChangeEvent, FormEvent, useState, useEffect, InvalidEvent } from 'react';
 import { Tasks } from '../Task';
 import { PlusCircle } from 'phosphor-react';
 import TaskBox from '../../domain/task';
@@ -12,6 +12,7 @@ export function Main() {
   const [tasksDone, setTasksDone] = useState([] as TaskBox[]);
 
   const styleWithoutAnyTasks = tasks.length === 0;
+  const isNewCommentEmpty = newCommentChange.length === 0;
 
   const taskId = tasks.length ? tasks[tasks.length - 1].id + 1 : 0;
   const newTask = { id: taskId, description: newCommentChange, checked: false };
@@ -25,6 +26,7 @@ export function Main() {
 
   function handleNewCommentChange(event: ChangeEvent<HTMLInputElement>) {
     setNewCommentChange(event.target.value);
+    event.target.setCustomValidity('');
   }
 
   function deleteTask(taskToDelete: number) {
@@ -47,6 +49,10 @@ export function Main() {
     })
     ));
   }
+
+  function handleNewCommentInvalid(event: InvalidEvent<HTMLInputElement>) {
+    event.target.setCustomValidity('This field is required');
+  }
   
 
   return (
@@ -57,9 +63,11 @@ export function Main() {
           type="text"
           placeholder='Add a new task'
           onChange={handleNewCommentChange}
+          onInvalid={handleNewCommentInvalid}
           value={newCommentChange}
+          required
         />
-        <button className={styles.createButton}>
+        <button type='submit' className={styles.createButton} disabled={isNewCommentEmpty}>
           Create
           <PlusCircle size={20} weight="bold" />
         </button>

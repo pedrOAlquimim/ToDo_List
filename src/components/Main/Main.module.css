@@ -33,6 +33,11 @@
   background: var(--blue);
 }
 
+.createButton:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
 .tasksContainer {
   margin-top: 4rem;
 }
@@ -82,4 +87,19 @@
 }
 .withoutTasksContainer div p:nth-child(1) {
   font-weight: bold;
+}
+
+@media (max-width: 480px) {
+  .form {
+    flex-wrap: wrap;
+  }
+
+  .createButton {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    width: 100%;
+  }
 }
