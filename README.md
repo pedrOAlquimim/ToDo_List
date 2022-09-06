@@ -24,3 +24,8 @@ It's a todo list made entirely with React and TypeScript, in which the user can 
 - React
 - TypeScript
 - ViteJs
+
+
+### Project Images
+![Img 1](../../../../../Linkedin_GitHub_Images/260949b7-5e76-4623-8f6b-b0da428978d1.jpg)
+![Img 2](../../../../../Linkedin_GitHub_Images/51311e27-d568-4edf-8f6a-f39df752ee36.jpg)
