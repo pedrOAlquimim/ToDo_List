@@ -15,12 +15,14 @@ export function Main() {
   const isNewCommentEmpty = newCommentChange.length === 0;
 
   const taskId = tasks.length ? tasks[tasks.length - 1].id + 1 : 0;
-  const newTask = { id: taskId, description: newCommentChange, checked: false };
-
 
   function handleCreateNewTask(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    setTasks([...tasks, newTask]);
+    setTasks([...tasks, {
+      id: taskId,
+      description: newCommentChange,
+      checked: false
+    }]);
     setNewCommentChange('');
   }
 
