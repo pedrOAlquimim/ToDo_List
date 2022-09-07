@@ -27,5 +27,8 @@ It's a todo list made entirely with React and TypeScript, in which the user can 
 
 
 ### Project Images
-![Img 1](../../../../../Linkedin_GitHub_Images/260949b7-5e76-4623-8f6b-b0da428978d1.jpg)
-![Img 2](../../../../../Linkedin_GitHub_Images/51311e27-d568-4edf-8f6a-f39df752ee36.jpg)
+
+<div align="center">
+  <img src="https://media-exp1.licdn.com/dms/image/C4D22AQHJsYbhh6siKQ/feedshare-shrink_1280/0/1662560190166?e=1665619200&v=beta&t=FhbaPGLPXyVR09Ga-alQbxEHNLjdWrghHu5qj1K9Sok" width=400/>
+  <img src="https://media-exp1.licdn.com/dms/image/C4D22AQFqwu6rlOaIDg/feedshare-shrink_1280/0/1662560190220?e=1665619200&v=beta&t=PyiIkGtIPx518yDuDAP4iStAQENNKW29wxpvkImH0F0" width=400/>
+</div>
