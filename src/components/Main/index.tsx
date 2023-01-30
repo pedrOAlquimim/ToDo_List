@@ -7,9 +7,30 @@ import clipboardImage from '../../assets/Clipboard.svg'
 import styles from './Main.module.css';
 
 export function Main() {
-  const [tasks, setTasks] = useState([] as TaskBox[]);
+  const [tasks, setTasks] = useState<TaskBox[]>(() => {
+    const tasksStoredJSON = localStorage.getItem('@todo-list:tasks-1.0.0')
+    if (tasksStoredJSON) {
+      return JSON.parse(tasksStoredJSON)
+    }
+    return []
+  });
+  const [tasksDone, setTasksDone] = useState<TaskBox[]>(() => {
+    const tasksDoneStoredJSON = localStorage.getItem('@todo-list:tasksDone-1.0.0')
+    if (tasksDoneStoredJSON) {
+      return JSON.parse(tasksDoneStoredJSON)
+    }
+    return []
+  });
   const [newCommentChange, setNewCommentChange] = useState('');
-  const [tasksDone, setTasksDone] = useState([] as TaskBox[]);
+
+  useEffect(() => {
+    const tasksJSON = JSON.stringify(tasks)
+    localStorage.setItem('@todo-list:tasks-1.0.0', tasksJSON)
+
+    const tasksDoneJSON = JSON.stringify(tasksDone)
+    localStorage.setItem('@todo-list:tasksDone-1.0.0', tasksDoneJSON)
+
+  }, [tasks, tasksDone])
 
   const styleWithoutAnyTasks = tasks.length === 0;
   const isNewCommentEmpty = newCommentChange.length === 0;
@@ -35,7 +56,11 @@ export function Main() {
     const tasksWithoutDeletedOne = tasks.filter(content => {
       return content.id !== taskToDelete;
     })
+    const tasksWithoutDeletedOneTD = tasksDone.filter(content => {
+      return content.id !== taskToDelete;
+    })
     setTasks(tasksWithoutDeletedOne);
+    setTasksDone(tasksWithoutDeletedOneTD)
   }
 
   function handleTaskChecked(taskId: number) {
@@ -47,7 +72,7 @@ export function Main() {
     })
     setTasks(tasksCheckedorNot);
     setTasksDone(tasks.filter((content => {
-      return content.checked
+      return content.checked === true
     })
     ));
   }

@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { Trash, Circle, CheckCircle } from "phosphor-react";
 import TaskBox from "../../domain/task";
 
@@ -11,24 +10,21 @@ interface TaskProps {
 }
 
 export function Tasks({ content, onDeleteTask, onTaskChecked }: TaskProps) {
-  const [isTaskChecked, setIsTaskChecked] = useState(false);
-
   function handleDeleteTask() {
     onDeleteTask(content.id);
   }
 
   function taskChecked() {
     onTaskChecked(content.id);
-    setIsTaskChecked(content.checked);
   }
 
 
   return (
     <div className={styles.container}>
-      <div className={isTaskChecked ? styles.contentCheckedTrue : styles.content}>
-        <button onClick={taskChecked} className={isTaskChecked ? styles.checkCircle : styles.uncheckCircle}>
+      <div className={content.checked === true ? styles.contentCheckedTrue : styles.content}>
+        <button onClick={taskChecked} className={content.checked === true ? styles.checkCircle : styles.uncheckCircle}>
           {
-            isTaskChecked
+            content.checked === true
             ?
             <CheckCircle size={18} weight="fill" />
             :
