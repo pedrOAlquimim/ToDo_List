@@ -28,7 +28,4 @@
 
 ### Project Images
 
-<div align="center">
-  <img src="https://media-exp1.licdn.com/dms/image/C4D22AQHJsYbhh6siKQ/feedshare-shrink_1280/0/1662560190166?e=1665619200&v=beta&t=FhbaPGLPXyVR09Ga-alQbxEHNLjdWrghHu5qj1K9Sok" width=400/>
-  <img src="https://media-exp1.licdn.com/dms/image/C4D22AQFqwu6rlOaIDg/feedshare-shrink_1280/0/1662560190220?e=1665619200&v=beta&t=PyiIkGtIPx518yDuDAP4iStAQENNKW29wxpvkImH0F0" width=400/>
-</div>
+![Project Image](/src/assets/project/image0.png) ![Project Image](/src/assets/project/image1.png)
